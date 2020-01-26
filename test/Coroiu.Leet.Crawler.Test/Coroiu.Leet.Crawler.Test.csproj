@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Coroiu.Leet.Crawler.Storage.InMemory\Coroiu.Leet.Crawler.Storage.InMemory.csproj" />
     <ProjectReference Include="..\..\src\Coroiu.Leet.Crawler\Coroiu.Leet.Crawler.csproj" />
   </ItemGroup>
 
