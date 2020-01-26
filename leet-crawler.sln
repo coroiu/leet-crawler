@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler.Storage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler.Storage.InMemory", "src\Coroiu.Leet.Crawler.Storage.InMemory\Coroiu.Leet.Crawler.Storage.InMemory.csproj", "{9A8558CF-E203-42ED-B4F1-5EDE35302B6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler.Net.Test", "test\XUnitTestProject1\Coroiu.Leet.Crawler.Net.Test.csproj", "{5D274776-5AFC-48BD-80E7-5E7B4E0D17AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{9A8558CF-E203-42ED-B4F1-5EDE35302B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A8558CF-E203-42ED-B4F1-5EDE35302B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A8558CF-E203-42ED-B4F1-5EDE35302B6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D274776-5AFC-48BD-80E7-5E7B4E0D17AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D274776-5AFC-48BD-80E7-5E7B4E0D17AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D274776-5AFC-48BD-80E7-5E7B4E0D17AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D274776-5AFC-48BD-80E7-5E7B4E0D17AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 		{92985A66-E7F1-4FC3-853C-2B5E98E6EE47} = {5FBEA956-9042-44B1-91AC-4EF4CC093650}
 		{667F2B07-E7DD-4E89-87E9-D2DFD453AFFB} = {60EDBAD5-599C-4901-8DAD-8C54F4D599EF}
 		{9A8558CF-E203-42ED-B4F1-5EDE35302B6D} = {60EDBAD5-599C-4901-8DAD-8C54F4D599EF}
+		{5D274776-5AFC-48BD-80E7-5E7B4E0D17AF} = {1F263E19-210E-45D1-9B2F-AC5877FBC573}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7D7B8761-3C5C-431E-A1B4-1962656EF368}

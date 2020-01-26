@@ -124,7 +124,7 @@ namespace Coroiu.Leet.Crawler.Test
             }, true);
 
             // Step 1
-            crawlSession.Crawl();
+            _ = crawlSession.Crawl();
 
             crawlSession.Completed.Should().BeEmpty();
 
@@ -164,7 +164,7 @@ namespace Coroiu.Leet.Crawler.Test
             }, true);
 
             // Step 1
-            crawlSession.Crawl();
+            _ = crawlSession.Crawl();
 
             crawlSession.Downloading.Should().HaveCount(1)
                 .And.Contain(startUri);
