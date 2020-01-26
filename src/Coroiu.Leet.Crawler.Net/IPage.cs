@@ -6,5 +6,7 @@ namespace Coroiu.Leet.Crawler.Net
     public interface IPage
     {
         IEnumerable<Uri> Uris { get; }
+
+        string Content { get; }
     }
 }

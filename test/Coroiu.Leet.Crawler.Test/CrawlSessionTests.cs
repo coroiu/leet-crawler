@@ -1,3 +1,4 @@
+using Coroiu.Leet.Crawler.Net;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
@@ -8,28 +9,35 @@ namespace Coroiu.Leet.Crawler.Test
 {
     public class CrawlSessionTest
     {
-        private static readonly Uri StartPage = new MockUri("a");
-
-        private IDictionary<Uri, IEnumerable<Uri>> pageMap;
         private MockBrowser browser;
         private ICrawlSession crawlSession;
 
         public CrawlSessionTest()
         {
-            pageMap = new Dictionary<Uri, IEnumerable<Uri>>();
-            browser = new MockBrowser(pageMap);
-            crawlSession = new CrawlSession(StartPage, browser);
         }
 
         [Fact]
-        public async void Crawl_SinglePageSite_CrawlsStartPage()
+        public async void Crawl_SinglePageSite_NavigatesStartPage()
         {
-            pageMap.Add(StartPage, Enumerable.Empty<Uri>());
+            var startUri = new MockUri("a");
+            SetupSession(startUri, new MockPage());
 
             await crawlSession.Crawl();
 
             browser.NavigatedUris.Should().HaveCount(1)
-                .And.Contain(StartPage);
+                .And.Contain(startUri);
+        }
+
+        private void SetupSession(Uri startUri, IPage startPage) =>
+            SetupSession(startUri, new Dictionary<Uri, IPage>()
+            {
+                { startUri, startPage }
+            });
+
+        private void SetupSession(Uri startUri, IDictionary<Uri, IPage> pageMap)
+        {
+            browser = new MockBrowser(pageMap);
+            crawlSession = new CrawlSession(startUri, browser);
         }
     }
 }

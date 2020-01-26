@@ -9,10 +9,10 @@ namespace Coroiu.Leet.Crawler.Test
     {
         public IEnumerable<Uri> NavigatedUris => navigatedUris;
 
-        private readonly IDictionary<Uri, IEnumerable<Uri>> pageMap;
+        private readonly IDictionary<Uri, IPage> pageMap;
         private readonly IList<Uri> navigatedUris;
 
-        public MockBrowser(IDictionary<Uri, IEnumerable<Uri>> pageMap)
+        public MockBrowser(IDictionary<Uri, IPage> pageMap)
         {
             this.pageMap = pageMap;
             navigatedUris = new List<Uri>();
@@ -22,12 +22,12 @@ namespace Coroiu.Leet.Crawler.Test
         {
             navigatedUris.Add(uri);
 
-            if (!pageMap.TryGetValue(uri, out var uris))
+            if (!pageMap.TryGetValue(uri, out var page))
             {
                 throw new PageNotFoundException(uri);
             }
 
-            return Task.FromResult<IPage>(new MockPage(uris));
+            return Task.FromResult(page);
         }
     }
 }

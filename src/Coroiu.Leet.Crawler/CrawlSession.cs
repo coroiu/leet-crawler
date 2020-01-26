@@ -6,18 +6,18 @@ namespace Coroiu.Leet.Crawler
 {
     internal class CrawlSession : ICrawlSession
     {
-        private readonly Uri startPage;
+        private readonly Uri startUri;
         private readonly IBrowser browser;
 
-        public CrawlSession(Uri startPage, IBrowser browser)
+        public CrawlSession(Uri startUri, IBrowser browser)
         {
-            this.startPage = startPage;
+            this.startUri = startUri;
             this.browser = browser;
         }
 
         public async Task Crawl()
         {
-            await browser.DownloadPage(startPage);
+            await browser.DownloadPage(startUri);
         }
     }
 }
