@@ -1,5 +1,4 @@
-using Coroiu.Leet.Crawler.Net;
-using Coroiu.Leet.Crawler.Storage;
+using Coroiu.Leet.Crawler.Net
 using Coroiu.Leet.Crawler.Storage.InMemory;
 using FluentAssertions;
 using System;
@@ -88,6 +87,25 @@ namespace Coroiu.Leet.Crawler.Test
                     new MockUri("a/a"),
                     new MockUri("a/b"),
                     new MockUri("a/a/a")
+                });
+        }
+
+        [Fact]
+        public async void Crawl_PageLoop_NavigatesAllPages()
+        {
+            var startUri = new MockUri("a");
+            SetupSession(startUri, new[]
+            {
+                new MockPage(startUri, new[] { new MockUri("a/a") }),
+                new MockPage(new MockUri("a/a"), new[] { startUri })
+            });
+
+            await crawlSession.Crawl();
+
+            browser.NavigatedUris.Should().HaveCount(2)
+                .And.Contain(new[] {
+                    new MockUri("a"),
+                    new MockUri("a/a"),
                 });
         }
 
