@@ -10,6 +10,8 @@ namespace Coroiu.Leet.Crawler
 {
     internal class CrawlSession : ICrawlSession
     {
+        public IEnumerable<Uri> Downloading => downloading;
+
         public IEnumerable<Uri> Completed => completed;
 
         private readonly Uri startUri;
@@ -18,7 +20,7 @@ namespace Coroiu.Leet.Crawler
         private readonly object visitedAddLock;
         private readonly ConcurrentBag<Uri> visited;
         private readonly ConcurrentBag<Uri> completed;
-
+        private readonly BlockingList<Uri> downloading;
 
         public CrawlSession(Uri startUri, IBrowser browser, IStorage storage)
         {
@@ -28,6 +30,7 @@ namespace Coroiu.Leet.Crawler
             visitedAddLock = new object();
             visited = new ConcurrentBag<Uri>();
             completed = new ConcurrentBag<Uri>();
+            downloading = new BlockingList<Uri>();
         }
 
         public Task Crawl()
@@ -38,7 +41,9 @@ namespace Coroiu.Leet.Crawler
 
         private async Task Crawl(Uri uri)
         {
+            downloading.Add(uri);
             var page = await browser.DownloadPage(uri);
+            downloading.Remove(uri);
             completed.Add(uri);
 
             IEnumerable<Uri> newUris;

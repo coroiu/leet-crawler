@@ -150,6 +150,46 @@ namespace Coroiu.Leet.Crawler.Test
                 .And.Contain(new[] { startUri, new MockUri("a/a"), new MockUri("a/b"), new MockUri("a/b/a") });
         }
 
+        [Fact]
+        public async void Downloading_MultiPageSite_UpdatesCurrentlyDownloadingPages()
+        {
+            // Arrange
+            var startUri = new MockUri("a");
+            SetupSession(startUri, new[]
+            {
+                new MockPage(startUri, new[] { new MockUri("a/a"), new MockUri("a/b") }),
+                new MockPage(new MockUri("a/a")),
+                new MockPage(new MockUri("a/b"), new[] { new MockUri("a/b/a")}),
+                new MockPage(new MockUri("a/b/a"))
+            }, true);
+
+            // Step 1
+            crawlSession.Crawl();
+
+            crawlSession.Downloading.Should().HaveCount(1)
+                .And.Contain(startUri);
+
+            // Step 2
+            browser.ReleaseDownloads();
+
+            await Task.Delay(10);
+            crawlSession.Downloading.Should().HaveCount(2)
+                .And.Contain(new[] { new MockUri("a/a"), new MockUri("a/b") });
+
+            // Step 3
+            browser.ReleaseDownloads();
+
+            await Task.Delay(10);
+            crawlSession.Downloading.Should().HaveCount(1)
+                .And.Contain(new[] { new MockUri("a/b/a") });
+
+            // Step 4
+            browser.ReleaseDownloads();
+
+            await Task.Delay(10);
+            crawlSession.Downloading.Should().BeEmpty();
+        }
+
         private void SetupSession(IPage startPage) =>
             SetupSession(startPage.Uri, new[] { startPage });
 
