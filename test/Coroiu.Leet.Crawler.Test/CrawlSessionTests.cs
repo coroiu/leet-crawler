@@ -24,7 +24,7 @@ namespace Coroiu.Leet.Crawler.Test
         public async void Crawl_SinglePageSite_NavigatesStartPage()
         {
             var startUri = new MockUri("a");
-            SetupSession(startUri, new MockPage());
+            SetupSession(new MockPage(startUri));
 
             await crawlSession.Crawl();
 
@@ -37,7 +37,7 @@ namespace Coroiu.Leet.Crawler.Test
         {
             var startUri = new MockUri("a");
             const string content = "start page content";
-            SetupSession(startUri, new MockPage(content));
+            SetupSession(new MockPage(startUri, content));
 
             await crawlSession.Crawl();
 
@@ -45,10 +45,10 @@ namespace Coroiu.Leet.Crawler.Test
             savedContent.Should().Be(content);
         }
 
-        private void SetupSession(Uri startUri, IPage startPage) =>
-            SetupSession(startUri, new Dictionary<Uri, IPage>()
+        private void SetupSession(IPage startPage) =>
+            SetupSession(startPage.Uri, new Dictionary<Uri, IPage>()
             {
-                { startUri, startPage }
+                { startPage.Uri, startPage }
             });
 
         private void SetupSession(Uri startUri, IDictionary<Uri, IPage> pageMap)

@@ -7,20 +7,23 @@ namespace Coroiu.Leet.Crawler.Test
 {
     internal class MockPage : IPage
     {
+        public Uri Uri { get; }
+
         public IEnumerable<Uri> Uris { get; }
 
         public string Content { get; }
 
-        public MockPage() : this("")
+        public MockPage(Uri uri) : this(uri, "")
         {
         }
 
-        public MockPage(string content) : this(content, Enumerable.Empty<Uri>()) 
+        public MockPage(Uri uri, string content) : this(uri, content, Enumerable.Empty<Uri>()) 
         {
         }
 
-        public MockPage(string content, IEnumerable<Uri> uris)
+        public MockPage(Uri uri, string content, IEnumerable<Uri> uris)
         {
+            Uri = uri;
             Uris = uris;
             Content = content;
         }
