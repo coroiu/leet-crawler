@@ -15,30 +15,41 @@ namespace Coroiu.Leet.Crawler
         private readonly Uri startUri;
         private readonly IBrowser browser;
         private readonly IStorage storage;
+        private readonly object visitedAddLock;
         private readonly ConcurrentBag<Uri> visited;
         private readonly ConcurrentBag<Uri> completed;
+
 
         public CrawlSession(Uri startUri, IBrowser browser, IStorage storage)
         {
             this.startUri = startUri;
             this.browser = browser;
             this.storage = storage;
+            visitedAddLock = new object();
             visited = new ConcurrentBag<Uri>();
             completed = new ConcurrentBag<Uri>();
         }
 
         public Task Crawl()
         {
+            visited.Add(startUri);
             return Crawl(startUri);
         }
 
         private async Task Crawl(Uri uri)
         {
-            visited.Add(uri);
             var page = await browser.DownloadPage(uri);
             completed.Add(uri);
-            var tasks = page.Uris
-                .Except(visited)
+
+            IEnumerable<Uri> newUris;
+            lock (visitedAddLock)
+            {
+                newUris = page.Uris.Except(visited).ToList();
+                foreach (var u in newUris)
+                    visited.Add(u);
+            }
+
+            var tasks = newUris
                 .Select(u => Crawl(u))
                 .Append(storage.Save(page.Uri, page.Content));
 
