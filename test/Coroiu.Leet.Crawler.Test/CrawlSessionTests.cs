@@ -1,9 +1,10 @@
-using Coroiu.Leet.Crawler.Net
+using Coroiu.Leet.Crawler.Net;
 using Coroiu.Leet.Crawler.Storage.InMemory;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Coroiu.Leet.Crawler.Test
@@ -109,12 +110,52 @@ namespace Coroiu.Leet.Crawler.Test
                 });
         }
 
+        [Fact]
+        public async void Completed_MultiPageSite_GraduallyAddsCrawledSites()
+        {
+            // Arrange
+            var startUri = new MockUri("a");
+            SetupSession(startUri, new[]
+            {
+                new MockPage(startUri, new[] { new MockUri("a/a"), new MockUri("a/b") }),
+                new MockPage(new MockUri("a/a")),
+                new MockPage(new MockUri("a/b"), new[] { new MockUri("a/b/a")}),
+                new MockPage(new MockUri("a/b/a"))
+            }, true);
+
+            // Step 1
+            crawlSession.Crawl();
+
+            crawlSession.Completed.Should().BeEmpty();
+
+            // Step 2
+            browser.ReleaseDownloads();
+
+            await Task.Delay(10);
+            crawlSession.Completed.Should().HaveCount(1)
+                .And.Contain(startUri);
+
+            // Step 3
+            browser.ReleaseDownloads();
+
+            await Task.Delay(10);
+            crawlSession.Completed.Should().HaveCount(3)
+                .And.Contain(new[] { startUri, new MockUri("a/a"), new MockUri("a/b") });
+
+            // Step 4
+            browser.ReleaseDownloads();
+
+            await Task.Delay(10);
+            crawlSession.Completed.Should().HaveCount(4)
+                .And.Contain(new[] { startUri, new MockUri("a/a"), new MockUri("a/b"), new MockUri("a/b/a") });
+        }
+
         private void SetupSession(IPage startPage) =>
             SetupSession(startPage.Uri, new[] { startPage });
 
-        private void SetupSession(Uri startUri, IEnumerable<IPage> pages)
+        private void SetupSession(Uri startUri, IEnumerable<IPage> pages, bool blockDownloads = false)
         {
-            browser = new MockBrowser(pages);
+            browser = new MockBrowser(pages, blockDownloads);
             crawlSession = new CrawlSession(startUri, browser, storage);
         }
     }
