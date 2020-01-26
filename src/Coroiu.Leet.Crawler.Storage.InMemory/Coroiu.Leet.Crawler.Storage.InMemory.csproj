@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Coroiu.Leet.Crawler.Net\Coroiu.Leet.Crawler.Net.csproj" />
     <ProjectReference Include="..\Coroiu.Leet.Crawler.Storage\Coroiu.Leet.Crawler.Storage.csproj" />
   </ItemGroup>
 

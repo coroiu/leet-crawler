@@ -24,7 +24,7 @@ namespace Coroiu.Leet.Crawler.Test
 
             if (!pageMap.TryGetValue(uri, out var uris))
             {
-                throw new PageNotFound(uri);
+                throw new PageNotFoundException(uri);
             }
 
             return Task.FromResult<IPage>(new MockPage(uris));

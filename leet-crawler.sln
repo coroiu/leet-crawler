@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coroiu.Leet.Crawler.Gui", "src\Coroiu.Leet.Crawler.Gui\Coroiu.Leet.Crawler.Gui.csproj", "{C9ACEE10-E38E-4247-9A02-1047344F870C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler", "src\Coroiu.Leet.Crawler\Coroiu.Leet.Crawler.csproj", "{6D8061A1-6699-4A72-9830-1E7FB597CD88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coroiu.Leet.Crawler", "src\Coroiu.Leet.Crawler\Coroiu.Leet.Crawler.csproj", "{6D8061A1-6699-4A72-9830-1E7FB597CD88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crawler", "Crawler", "{5FBEA956-9042-44B1-91AC-4EF4CC093650}"
 EndProject
@@ -13,13 +13,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gui", "Gui", "{CADFC6A2-D94
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net", "Net", "{1F263E19-210E-45D1-9B2F-AC5877FBC573}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler.Net", "src\Coroiu.Leet.Crawler.Net\Coroiu.Leet.Crawler.Net.csproj", "{F49753FE-2B81-46B3-978D-2D107E97A7B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coroiu.Leet.Crawler.Net", "src\Coroiu.Leet.Crawler.Net\Coroiu.Leet.Crawler.Net.csproj", "{F49753FE-2B81-46B3-978D-2D107E97A7B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{60EDBAD5-599C-4901-8DAD-8C54F4D599EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler.Storage", "src\Coroiu.Leet.Crawler.Storage\Coroiu.Leet.Crawler.Storage.csproj", "{B1313343-39DE-4581-A272-B4ABBB857CBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coroiu.Leet.Crawler.Storage", "src\Coroiu.Leet.Crawler.Storage\Coroiu.Leet.Crawler.Storage.csproj", "{B1313343-39DE-4581-A272-B4ABBB857CBB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coroiu.Leet.Crawler.Test", "test\Coroiu.Leet.Crawler.Test\Coroiu.Leet.Crawler.Test.csproj", "{92985A66-E7F1-4FC3-853C-2B5E98E6EE47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler.Storage.Test", "test\Coroiu.Leet.Crawler.Storage.Test\Coroiu.Leet.Crawler.Storage.Test.csproj", "{667F2B07-E7DD-4E89-87E9-D2DFD453AFFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler.Storage.InMemory", "src\Coroiu.Leet.Crawler.Storage.InMemory\Coroiu.Leet.Crawler.Storage.InMemory.csproj", "{9A8558CF-E203-42ED-B4F1-5EDE35302B6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,14 @@ Global
 		{92985A66-E7F1-4FC3-853C-2B5E98E6EE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92985A66-E7F1-4FC3-853C-2B5E98E6EE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92985A66-E7F1-4FC3-853C-2B5E98E6EE47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{667F2B07-E7DD-4E89-87E9-D2DFD453AFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{667F2B07-E7DD-4E89-87E9-D2DFD453AFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{667F2B07-E7DD-4E89-87E9-D2DFD453AFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{667F2B07-E7DD-4E89-87E9-D2DFD453AFFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A8558CF-E203-42ED-B4F1-5EDE35302B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A8558CF-E203-42ED-B4F1-5EDE35302B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A8558CF-E203-42ED-B4F1-5EDE35302B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A8558CF-E203-42ED-B4F1-5EDE35302B6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +69,8 @@ Global
 		{F49753FE-2B81-46B3-978D-2D107E97A7B5} = {1F263E19-210E-45D1-9B2F-AC5877FBC573}
 		{B1313343-39DE-4581-A272-B4ABBB857CBB} = {60EDBAD5-599C-4901-8DAD-8C54F4D599EF}
 		{92985A66-E7F1-4FC3-853C-2B5E98E6EE47} = {5FBEA956-9042-44B1-91AC-4EF4CC093650}
+		{667F2B07-E7DD-4E89-87E9-D2DFD453AFFB} = {60EDBAD5-599C-4901-8DAD-8C54F4D599EF}
+		{9A8558CF-E203-42ED-B4F1-5EDE35302B6D} = {60EDBAD5-599C-4901-8DAD-8C54F4D599EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7D7B8761-3C5C-431E-A1B4-1962656EF368}
