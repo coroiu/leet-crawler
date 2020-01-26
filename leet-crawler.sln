@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gui", "Gui", "{CADFC6A2-D94
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler.Test", "Coroiu.Leet.Crawler.Test\Coroiu.Leet.Crawler.Test.csproj", "{D07ADE5F-104F-4B54-9BD8-9F3B1E4E6049}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net", "Net", "{1F263E19-210E-45D1-9B2F-AC5877FBC573}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler.Net", "src\Coroiu.Leet.Crawler.Net\Coroiu.Leet.Crawler.Net.csproj", "{F49753FE-2B81-46B3-978D-2D107E97A7B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{D07ADE5F-104F-4B54-9BD8-9F3B1E4E6049}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D07ADE5F-104F-4B54-9BD8-9F3B1E4E6049}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D07ADE5F-104F-4B54-9BD8-9F3B1E4E6049}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F49753FE-2B81-46B3-978D-2D107E97A7B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F49753FE-2B81-46B3-978D-2D107E97A7B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F49753FE-2B81-46B3-978D-2D107E97A7B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F49753FE-2B81-46B3-978D-2D107E97A7B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +47,7 @@ Global
 		{C9ACEE10-E38E-4247-9A02-1047344F870C} = {CADFC6A2-D949-4823-9970-E2E1121B4C0B}
 		{6D8061A1-6699-4A72-9830-1E7FB597CD88} = {5FBEA956-9042-44B1-91AC-4EF4CC093650}
 		{D07ADE5F-104F-4B54-9BD8-9F3B1E4E6049} = {5FBEA956-9042-44B1-91AC-4EF4CC093650}
+		{F49753FE-2B81-46B3-978D-2D107E97A7B5} = {1F263E19-210E-45D1-9B2F-AC5877FBC573}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7D7B8761-3C5C-431E-A1B4-1962656EF368}
