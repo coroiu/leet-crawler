@@ -5,11 +5,11 @@ namespace Coroiu.Leet.Crawler.Test
 {
     public class CrawlSessionTest
     {
-        private ICrawlSession _crawlSession;
+        private ICrawlSession crawlSession;
 
         public CrawlSessionTest()
         {
-            _crawlSession = new CrawlSession();
+            crawlSession = new CrawlSession();
         }
 
         [Fact]
