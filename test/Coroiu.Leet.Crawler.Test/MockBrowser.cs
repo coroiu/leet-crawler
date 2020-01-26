@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Coroiu.Leet.Crawler.Test
 {
@@ -12,9 +13,9 @@ namespace Coroiu.Leet.Crawler.Test
         private readonly IDictionary<Uri, IPage> pageMap;
         private readonly IList<Uri> navigatedUris;
 
-        public MockBrowser(IDictionary<Uri, IPage> pageMap)
+        public MockBrowser(IEnumerable<IPage> pages)
         {
-            this.pageMap = pageMap;
+            pageMap = pages.ToDictionary(p => p.Uri);
             navigatedUris = new List<Uri>();
         }
 

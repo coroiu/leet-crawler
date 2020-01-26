@@ -46,14 +46,11 @@ namespace Coroiu.Leet.Crawler.Test
         }
 
         private void SetupSession(IPage startPage) =>
-            SetupSession(startPage.Uri, new Dictionary<Uri, IPage>()
-            {
-                { startPage.Uri, startPage }
-            });
+            SetupSession(startPage.Uri, new[] { startPage });
 
-        private void SetupSession(Uri startUri, IDictionary<Uri, IPage> pageMap)
+        private void SetupSession(Uri startUri, IEnumerable<IPage> pages)
         {
-            browser = new MockBrowser(pageMap);
+            browser = new MockBrowser(pages);
             crawlSession = new CrawlSession(startUri, browser, storage);
         }
     }
