@@ -1,6 +1,7 @@
 ﻿using Coroiu.Leet.Crawler.Net;
 using Coroiu.Leet.Crawler.Storage;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Coroiu.Leet.Crawler
@@ -18,10 +19,19 @@ namespace Coroiu.Leet.Crawler
             this.storage = storage;
         }
 
-        public async Task Crawl()
+        public Task Crawl()
         {
-            var page = await browser.DownloadPage(startUri);
-            await storage.Save(startUri, page.Content);
+            return Crawl(startUri);
+        }
+
+        private async Task Crawl(Uri uri)
+        {
+            var page = await browser.DownloadPage(uri);
+            var tasks = page.Uris
+                .Select(uri => Crawl(uri))
+                .Append(storage.Save(page.Uri, page.Content));
+
+            await Task.WhenAll(tasks);
         }
     }
 }

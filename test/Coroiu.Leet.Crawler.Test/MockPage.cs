@@ -17,6 +17,10 @@ namespace Coroiu.Leet.Crawler.Test
         {
         }
 
+        public MockPage(Uri uri, IEnumerable<Uri> uris) : this(uri, "", uris)
+        {
+        }
+
         public MockPage(Uri uri, string content) : this(uri, content, Enumerable.Empty<Uri>()) 
         {
         }
