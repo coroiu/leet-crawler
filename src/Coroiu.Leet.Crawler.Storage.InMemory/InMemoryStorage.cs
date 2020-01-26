@@ -20,6 +20,13 @@ namespace Coroiu.Leet.Crawler.Storage.InMemory
             throw new NotImplementedException();
         }
 
+        public Task Clear()
+        {
+            entries.Clear();
+
+            return Task.CompletedTask;
+        }
+
         public Task Save(Uri uri, string content)
         {
             entries.Add(uri, content);

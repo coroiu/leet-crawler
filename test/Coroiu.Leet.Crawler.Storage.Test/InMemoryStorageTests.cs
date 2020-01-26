@@ -21,7 +21,7 @@ namespace Coroiu.Leet.Crawler.Storage.Test
         }
 
         [Fact]
-        public void Entries_TwoEntriesSaved_ReturnsEntries()
+        public void Save_TwoEntriesSaved_EntriesContainEntries()
         {
             var entries = new[] { new Uri("fake://a"), new Uri("fake://b") };
 
@@ -31,6 +31,18 @@ namespace Coroiu.Leet.Crawler.Storage.Test
             }
 
             storage.Entries.Should().ContainInOrder(entries);
+        }
+
+
+        [Fact]
+        public async void Clear_OneSavedEntryCleared_EntriesIsEmpty()
+        {
+            var entry = new Uri("fake://a");
+            await storage.Save(entry, "");
+
+            await storage.Clear();
+
+            storage.Entries.Should().BeEmpty();
         }
     }
 }
