@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crawler", "Crawler", "{5FBE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gui", "Gui", "{CADFC6A2-D949-4823-9970-E2E1121B4C0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler.Test", "Coroiu.Leet.Crawler.Test\Coroiu.Leet.Crawler.Test.csproj", "{D07ADE5F-104F-4B54-9BD8-9F3B1E4E6049}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net", "Net", "{1F263E19-210E-45D1-9B2F-AC5877FBC573}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler.Net", "src\Coroiu.Leet.Crawler.Net\Coroiu.Leet.Crawler.Net.csproj", "{F49753FE-2B81-46B3-978D-2D107E97A7B5}"
@@ -20,6 +18,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{60EDBAD5-599C-4901-8DAD-8C54F4D599EF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coroiu.Leet.Crawler.Storage", "src\Coroiu.Leet.Crawler.Storage\Coroiu.Leet.Crawler.Storage.csproj", "{B1313343-39DE-4581-A272-B4ABBB857CBB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coroiu.Leet.Crawler.Test", "test\Coroiu.Leet.Crawler.Test\Coroiu.Leet.Crawler.Test.csproj", "{92985A66-E7F1-4FC3-853C-2B5E98E6EE47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,6 @@ Global
 		{6D8061A1-6699-4A72-9830-1E7FB597CD88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D8061A1-6699-4A72-9830-1E7FB597CD88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D8061A1-6699-4A72-9830-1E7FB597CD88}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D07ADE5F-104F-4B54-9BD8-9F3B1E4E6049}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D07ADE5F-104F-4B54-9BD8-9F3B1E4E6049}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D07ADE5F-104F-4B54-9BD8-9F3B1E4E6049}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D07ADE5F-104F-4B54-9BD8-9F3B1E4E6049}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F49753FE-2B81-46B3-978D-2D107E97A7B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F49753FE-2B81-46B3-978D-2D107E97A7B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F49753FE-2B81-46B3-978D-2D107E97A7B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,6 +43,10 @@ Global
 		{B1313343-39DE-4581-A272-B4ABBB857CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1313343-39DE-4581-A272-B4ABBB857CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1313343-39DE-4581-A272-B4ABBB857CBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92985A66-E7F1-4FC3-853C-2B5E98E6EE47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92985A66-E7F1-4FC3-853C-2B5E98E6EE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92985A66-E7F1-4FC3-853C-2B5E98E6EE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92985A66-E7F1-4FC3-853C-2B5E98E6EE47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,9 +54,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C9ACEE10-E38E-4247-9A02-1047344F870C} = {CADFC6A2-D949-4823-9970-E2E1121B4C0B}
 		{6D8061A1-6699-4A72-9830-1E7FB597CD88} = {5FBEA956-9042-44B1-91AC-4EF4CC093650}
-		{D07ADE5F-104F-4B54-9BD8-9F3B1E4E6049} = {5FBEA956-9042-44B1-91AC-4EF4CC093650}
 		{F49753FE-2B81-46B3-978D-2D107E97A7B5} = {1F263E19-210E-45D1-9B2F-AC5877FBC573}
 		{B1313343-39DE-4581-A272-B4ABBB857CBB} = {60EDBAD5-599C-4901-8DAD-8C54F4D599EF}
+		{92985A66-E7F1-4FC3-853C-2B5E98E6EE47} = {5FBEA956-9042-44B1-91AC-4EF4CC093650}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7D7B8761-3C5C-431E-A1B4-1962656EF368}
