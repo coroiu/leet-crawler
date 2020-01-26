@@ -1,6 +1,7 @@
 using Coroiu.Leet.Crawler.Storage.InMemory;
 using FluentAssertions;
 using System;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Coroiu.Leet.Crawler.Storage.Test
@@ -33,6 +34,28 @@ namespace Coroiu.Leet.Crawler.Storage.Test
             storage.Entries.Should().ContainInOrder(entries);
         }
 
+        [Fact]
+        public void Save_EntryAlreadySaved_ThrowsEntryAlreadyExists()
+        {
+            var entry = new Uri("fake://a");
+            storage.Save(entry, "");
+
+            Func<Task> x = () => storage.Save(entry, "");
+
+            x.Should().Throw<EntryAlreadyExistsException>();
+        }
+
+        [Fact]
+        public async void Read_OneSavedEntry_ReturnsContent()
+        {
+            var entry = new Uri("fake://a");
+            const string content = "some content";
+            await storage.Save(entry, content);
+
+            var result = await storage.Read(entry);
+
+            result.Should().Be(content);
+        }
 
         [Fact]
         public async void Clear_OneSavedEntryCleared_EntriesIsEmpty()

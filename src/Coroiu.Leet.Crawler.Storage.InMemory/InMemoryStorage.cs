@@ -15,9 +15,9 @@ namespace Coroiu.Leet.Crawler.Storage.InMemory
             entries = new Dictionary<Uri, string>();
         }
 
-        public string Read(Uri uri)
+        public Task<string> Read(Uri uri)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(entries[uri]);
         }
 
         public Task Clear()
@@ -29,6 +29,9 @@ namespace Coroiu.Leet.Crawler.Storage.InMemory
 
         public Task Save(Uri uri, string content)
         {
+            if (entries.ContainsKey(uri))
+                throw new EntryAlreadyExistsException(uri);
+
             entries.Add(uri, content);
 
             return Task.CompletedTask;
