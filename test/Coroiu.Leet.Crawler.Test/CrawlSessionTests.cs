@@ -68,6 +68,29 @@ namespace Coroiu.Leet.Crawler.Test
                 });
         }
 
+        [Fact]
+        public async void Crawl_TwoPathsToSamePage_NavigatesAllPages()
+        {
+            var startUri = new MockUri("a");
+            SetupSession(startUri, new[]
+            {
+                new MockPage(startUri, new[] { new MockUri("a/a"), new MockUri("a/b") }),
+                new MockPage(new MockUri("a/a"), new[] { new MockUri("a/a/a")}),
+                new MockPage(new MockUri("a/b"), new[] { new MockUri("a/a/a")}),
+                new MockPage(new MockUri("a/a/a"))
+            });
+
+            await crawlSession.Crawl();
+
+            browser.NavigatedUris.Should().HaveCount(4)
+                .And.Contain(new[] {
+                    new MockUri("a"),
+                    new MockUri("a/a"),
+                    new MockUri("a/b"),
+                    new MockUri("a/a/a")
+                });
+        }
+
         private void SetupSession(IPage startPage) =>
             SetupSession(startPage.Uri, new[] { startPage });
 
