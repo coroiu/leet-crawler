@@ -46,6 +46,25 @@ namespace Coroiu.Leet.Crawler.Test
         }
 
         [Fact]
+        public async void Crawl_TwoPageSiteWithRelativeUri_NavigatesAllPages()
+        {
+            var startUri = new MockUri("");
+            SetupSession(startUri, new[]
+            {
+                new MockPage(startUri, new[] { new Uri("/a", UriKind.Relative) }),
+                new MockPage(new MockUri("a")),
+            });
+
+            await crawlSession.Crawl();
+
+            browser.NavigatedUris.Should().HaveCount(2)
+                .And.Contain(new[] {
+                    new MockUri(""),
+                    new MockUri("a"),
+                });
+        }
+
+        [Fact]
         public async void Crawl_MultiPageSite_NavigatesAllPages()
         {
             var startUri = new MockUri("a");

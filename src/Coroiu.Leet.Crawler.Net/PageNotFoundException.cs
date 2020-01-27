@@ -8,7 +8,7 @@ namespace Coroiu.Leet.Crawler.Net
         {
         }
 
-        public PageNotFoundException(Uri uri, Exception innerException) : base($"Page '{uri.AbsoluteUri}' not found.", innerException)
+        public PageNotFoundException(Uri uri, Exception innerException) : base($"Page '{uri}' not found.", innerException)
         {
         }
     }

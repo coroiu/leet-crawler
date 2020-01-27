@@ -38,5 +38,16 @@ namespace Coroiu.Leet.Crawlet.Net.Test
             uris.Should().HaveCount(2)
                 .And.Contain(new[] { new Uri("http://test.com"), new Uri("http://test2.com") });
         }
+
+        [Fact]
+        public void Uris_RelativeAnchor_ReturnsUri()
+        {
+            var page = new HtmlPage(new Uri("fake://a"), "<a href=\"/a\">test link</a>");
+
+            var uris = page.Uris;
+
+            uris.Should().HaveCount(1)
+                .And.Contain(new[] { new Uri("/a", UriKind.Relative) });
+        }
     }
 }

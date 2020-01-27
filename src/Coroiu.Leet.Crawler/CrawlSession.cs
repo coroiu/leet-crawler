@@ -55,7 +55,7 @@ namespace Coroiu.Leet.Crawler
             }
 
             var tasks = newUris
-                .Select(u => Crawl(u))
+                .Select(u => Crawl(AbsoluteUri(u)))
                 .Append(storage.Save(page.Uri, page.Content));
 
             await Task.WhenAll(tasks);
@@ -63,7 +63,16 @@ namespace Coroiu.Leet.Crawler
 
         private bool IsValidUri(Uri uri)
         {
-            return uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps;
+            return uri.IsAbsoluteUri && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps) && uri.Host == startUri.Host ||
+                !uri.IsAbsoluteUri;
+        }
+
+        private Uri AbsoluteUri(Uri uri)
+        {
+            if (uri.IsAbsoluteUri)
+                return uri;
+
+            return new Uri(startUri, uri);
         }
     }
 }
