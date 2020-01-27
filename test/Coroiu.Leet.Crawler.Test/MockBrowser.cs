@@ -11,7 +11,7 @@ namespace Coroiu.Leet.Crawler.Test
     {
         public IEnumerable<Uri> NavigatedUris => navigatedUris;
 
-        private readonly IDictionary<Uri, IPage> pageMap;
+        private readonly IDictionary<Uri, IResource> siteMap;
         private readonly IList<Uri> navigatedUris;
         private readonly bool blockDownloads;
         private readonly EventWaitHandle downloadBlockHandle;
@@ -19,9 +19,9 @@ namespace Coroiu.Leet.Crawler.Test
 
         private int blockedThreads = 0;
 
-        public MockBrowser(IEnumerable<IPage> pages, bool blockDownloads = false)
+        public MockBrowser(IEnumerable<IResource> resources, bool blockDownloads = false)
         {
-            pageMap = pages.ToDictionary(p => p.Uri);
+            siteMap = resources.ToDictionary(p => p.Uri);
             navigatedUris = new List<Uri>();
             this.blockDownloads = blockDownloads;
             downloadBlockHandle = new AutoResetEvent(false);
@@ -40,11 +40,11 @@ namespace Coroiu.Leet.Crawler.Test
 
         public Task<IResource> DownloadPage(Uri uri)
         {
-            return Task.Run<IResource>(() =>
+            return Task.Run(() =>
             {
                 navigatedUris.Add(uri);
 
-                if (!pageMap.TryGetValue(uri, out var page))
+                if (!siteMap.TryGetValue(uri, out var page))
                 {
                     throw new PageNotFoundException(uri);
                 }

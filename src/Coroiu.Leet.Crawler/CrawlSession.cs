@@ -45,7 +45,7 @@ namespace Coroiu.Leet.Crawler
             var resource = await browser.DownloadPage(uri);
             downloading.Remove(uri);
             completed.Add(uri);
-
+            
             if (resource is IPage page)
             {
                 IEnumerable<Uri> newUris;
@@ -61,6 +61,10 @@ namespace Coroiu.Leet.Crawler
                     .Append(storage.Save(page.Uri, page.Content));
 
                 await Task.WhenAll(tasks);
+            } 
+            else if (resource is IFile file)
+            {
+                await storage.Save(file.Uri, file.Content);
             }
         }
 

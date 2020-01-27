@@ -46,6 +46,19 @@ namespace Coroiu.Leet.Crawler.Test
         }
 
         [Fact]
+        public async void Crawl_SingleFileSite_SavesFileContent()
+        {
+            var startUri = new MockUri("a");
+            byte[] content = { 0, 1, 2, 3, 4 };
+            SetupSession(new MockFile(startUri, content));
+
+            await crawlSession.Crawl();
+
+            var savedContent = await storage.Read(storage.Entries.First());
+            savedContent.Should().Be(content);
+        }
+
+        [Fact]
         public async void Crawl_TwoPageSiteWithRelativeUri_NavigatesAllPages()
         {
             var startUri = new MockUri("");
@@ -209,12 +222,12 @@ namespace Coroiu.Leet.Crawler.Test
             crawlSession.Downloading.Should().BeEmpty();
         }
 
-        private void SetupSession(IPage startPage) =>
-            SetupSession(startPage.Uri, new[] { startPage });
+        private void SetupSession(IResource startResource) =>
+            SetupSession(startResource.Uri, new[] { startResource });
 
-        private void SetupSession(Uri startUri, IEnumerable<IPage> pages, bool blockDownloads = false)
+        private void SetupSession(Uri startUri, IEnumerable<IResource> resources, bool blockDownloads = false)
         {
-            browser = new MockBrowser(pages, blockDownloads);
+            browser = new MockBrowser(resources, blockDownloads);
             crawlSession = new CrawlSession(startUri, browser, storage);
         }
     }
