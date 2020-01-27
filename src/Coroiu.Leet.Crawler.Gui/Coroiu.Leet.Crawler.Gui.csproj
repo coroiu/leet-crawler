@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Coroiu.Leet.Crawler.Net\Coroiu.Leet.Crawler.Net.csproj" />
     <ProjectReference Include="..\Coroiu.Leet.Crawler.Storage.FileSystem\Coroiu.Leet.Crawler.Storage.FileSystem.csproj" />
+    <ProjectReference Include="..\Coroiu.Leet.Crawler.Storage.InMemory\Coroiu.Leet.Crawler.Storage.InMemory.csproj" />
     <ProjectReference Include="..\Coroiu.Leet.Crawler\Coroiu.Leet.Crawler.csproj" />
   </ItemGroup>
 
