@@ -26,10 +26,8 @@ namespace Coroiu.Leet.Crawler.Storage.Test
         {
             var entries = new[] { new Uri("fake://a"), new Uri("fake://b") };
 
-            foreach (var entry in entries)
-            {
-                storage.Save(entry, "");
-            }
+            storage.Save(entries[0], "");
+            storage.Save(entries[1], new byte[5]);
 
             storage.Entries.Should().ContainInOrder(entries);
         }
@@ -46,10 +44,22 @@ namespace Coroiu.Leet.Crawler.Storage.Test
         }
 
         [Fact]
-        public async void Read_OneSavedEntry_ReturnsContent()
+        public async void Read_OneSavedStringEntry_ReturnsContent()
         {
             var entry = new Uri("fake://a");
             const string content = "some content";
+            await storage.Save(entry, content);
+
+            var result = await storage.Read(entry);
+
+            result.Should().Be(content);
+        }
+
+        [Fact]
+        public async void Read_OneSavedByteEntry_ReturnsContent()
+        {
+            var entry = new Uri("fake://a");
+            byte[] content = new byte[] { 0, 1, 2, 3 };
             await storage.Save(entry, content);
 
             var result = await storage.Read(entry);

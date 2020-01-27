@@ -8,14 +8,14 @@ namespace Coroiu.Leet.Crawler.Storage.InMemory
     {
         public IEnumerable<Uri> Entries => entries.Keys;
 
-        private IDictionary<Uri, string> entries { get; }
+        private IDictionary<Uri, object> entries { get; }
 
         public InMemoryStorage()
         {
-            entries = new Dictionary<Uri, string>();
+            entries = new Dictionary<Uri, object>();
         }
 
-        public Task<string> Read(Uri uri)
+        public Task<object> Read(Uri uri)
         {
             return Task.FromResult(entries[uri]);
         }
@@ -28,6 +28,16 @@ namespace Coroiu.Leet.Crawler.Storage.InMemory
         }
 
         public Task Save(Uri uri, string content)
+        {
+            if (entries.ContainsKey(uri))
+                throw new EntryAlreadyExistsException(uri);
+
+            entries.Add(uri, content);
+
+            return Task.CompletedTask;
+        }
+
+        public Task Save(Uri uri, byte[] content)
         {
             if (entries.ContainsKey(uri))
                 throw new EntryAlreadyExistsException(uri);

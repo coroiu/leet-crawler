@@ -8,5 +8,7 @@ namespace Coroiu.Leet.Crawler.Storage
         Task Clear();
 
         Task Save(Uri uri, string content);
+
+        Task Save(Uri uri, byte[] content);
     }
 }

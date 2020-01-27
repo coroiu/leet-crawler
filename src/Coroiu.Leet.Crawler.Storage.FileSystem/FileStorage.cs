@@ -25,10 +25,15 @@ namespace Coroiu.Leet.Crawler.Storage.FileSystem
             // This conversion should be placed somewhere else
             var filepath = new Uri(root, uri.AbsolutePath);
 
-            using (var writer = new StreamWriter(new FileStream(filepath.ToString(), FileMode.CreateNew)))
-            {
-                await writer.WriteAsync(content);
-            }
+            await File.WriteAllTextAsync(filepath.ToString(), content);
+        }
+
+        public async Task Save(Uri uri, byte[] content)
+        {
+            // This conversion should be placed somewhere else
+            var filepath = new Uri(root, uri.AbsolutePath);
+
+            await File.WriteAllBytesAsync(filepath.ToString(), content);
         }
     }
 }
