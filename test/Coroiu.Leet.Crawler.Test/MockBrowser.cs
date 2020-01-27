@@ -38,9 +38,9 @@ namespace Coroiu.Leet.Crawler.Test
             }
         }
 
-        public Task<IPage> DownloadPage(Uri uri)
+        public Task<IResource> DownloadPage(Uri uri)
         {
-            return Task.Run(() =>
+            return Task.Run<IResource>(() =>
             {
                 navigatedUris.Add(uri);
 

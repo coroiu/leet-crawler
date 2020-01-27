@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Coroiu.Leet.Crawler.Net
 {
-    public interface IPage
+    public interface IPage : IResource
     {
-        Uri Uri { get; }
-
         IEnumerable<Uri> Uris { get; }
 
         string Content { get; }

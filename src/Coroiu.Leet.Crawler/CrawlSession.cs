@@ -42,23 +42,26 @@ namespace Coroiu.Leet.Crawler
         private async Task Crawl(Uri uri)
         {
             downloading.Add(uri);
-            var page = await browser.DownloadPage(uri);
+            var resource = await browser.DownloadPage(uri);
             downloading.Remove(uri);
             completed.Add(uri);
 
-            IEnumerable<Uri> newUris;
-            lock (visitedAddLock)
+            if (resource is IPage page)
             {
-                newUris = page.Uris.Except(visited).Where(IsValidUri).ToList();
-                foreach (var u in newUris)
-                    visited.Add(u);
+                IEnumerable<Uri> newUris;
+                lock (visitedAddLock)
+                {
+                    newUris = page.Uris.Except(visited).Where(IsValidUri).ToList();
+                    foreach (var u in newUris)
+                        visited.Add(u);
+                }
+
+                var tasks = newUris
+                    .Select(u => Crawl(AbsoluteUri(u)))
+                    .Append(storage.Save(page.Uri, page.Content));
+
+                await Task.WhenAll(tasks);
             }
-
-            var tasks = newUris
-                .Select(u => Crawl(AbsoluteUri(u)))
-                .Append(storage.Save(page.Uri, page.Content));
-
-            await Task.WhenAll(tasks);
         }
 
         private bool IsValidUri(Uri uri)

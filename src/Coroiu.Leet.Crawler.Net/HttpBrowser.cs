@@ -15,7 +15,7 @@ namespace Coroiu.Leet.Crawler.Net
             httpClient = new HttpClient();
         }
 
-        public async Task<IPage> DownloadPage(Uri uri)
+        public async Task<IResource> DownloadPage(Uri uri)
         {
             var response = await httpClient.GetAsync(uri);
             var content = await response.Content.ReadAsStringAsync();
