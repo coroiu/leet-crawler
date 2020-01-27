@@ -49,7 +49,7 @@ namespace Coroiu.Leet.Crawler
             IEnumerable<Uri> newUris;
             lock (visitedAddLock)
             {
-                newUris = page.Uris.Except(visited).ToList();
+                newUris = page.Uris.Except(visited).Where(IsValidUri).ToList();
                 foreach (var u in newUris)
                     visited.Add(u);
             }
@@ -59,6 +59,11 @@ namespace Coroiu.Leet.Crawler
                 .Append(storage.Save(page.Uri, page.Content));
 
             await Task.WhenAll(tasks);
+        }
+
+        private bool IsValidUri(Uri uri)
+        {
+            return uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps;
         }
     }
 }
