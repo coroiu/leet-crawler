@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Coroiu.Leet.Crawler.Net
@@ -18,9 +16,15 @@ namespace Coroiu.Leet.Crawler.Net
         public async Task<IResource> DownloadPage(Uri uri)
         {
             var response = await httpClient.GetAsync(uri);
-            var content = await response.Content.ReadAsStringAsync();
 
-            return new HtmlPage(uri, content);
+            if (response.Content.Headers.ContentType.MediaType.Contains("html"))
+            {
+                return new HtmlPage(uri, 
+                    await response.Content.ReadAsStringAsync());
+            }
+
+            return new File(uri,
+                await response.Content.ReadAsByteArrayAsync());
         }
     }
 }
