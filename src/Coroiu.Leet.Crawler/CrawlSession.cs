@@ -1,4 +1,4 @@
-﻿using Coroiu.Leet.Crawler.Net;
+using Coroiu.Leet.Crawler.Net;
 using Coroiu.Leet.Crawler.Storage;
 using System;
 using System.Collections.Concurrent;
@@ -51,7 +51,12 @@ namespace Coroiu.Leet.Crawler
                 IEnumerable<Uri> newUris;
                 lock (visitedAddLock)
                 {
-                    newUris = page.Uris.Except(visited).Where(IsValidUri).ToList();
+                    newUris = page.Uris
+                        .Where(IsValidUri)
+                        .Select(AbsoluteUri)
+                        .Except(visited)
+                        .Distinct()
+                        .ToList();
                     foreach (var u in newUris)
                         visited.Add(u);
                 }
@@ -70,7 +75,7 @@ namespace Coroiu.Leet.Crawler
 
         private bool IsValidUri(Uri uri)
         {
-            return uri.IsAbsoluteUri && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps) && uri.Host == startUri.Host ||
+            return uri.IsAbsoluteUri && uri.Scheme == startUri.Scheme && uri.Host == startUri.Host ||
                 !uri.IsAbsoluteUri;
         }
 

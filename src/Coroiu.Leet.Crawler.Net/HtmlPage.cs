@@ -22,7 +22,7 @@ namespace Coroiu.Leet.Crawler.Net
 
         private static IEnumerable<Uri> ExtractAnchors(string content)
         {
-            return Regex.Matches(content, "href\\s*=\\s*\"(?<url>.*?)\"")
+            return Regex.Matches(content, "<a href=\"(?<url>.*?)\"")
                 .Select(m => new Uri(m.Groups["url"].Value, UriKind.RelativeOrAbsolute));
         }
     }
