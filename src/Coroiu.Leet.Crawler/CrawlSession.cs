@@ -58,13 +58,13 @@ namespace Coroiu.Leet.Crawler
 
                 var tasks = newUris
                     .Select(u => Crawl(AbsoluteUri(u)))
-                    .Append(storage.Save(page.Uri, page.Content));
+                    .Append(storage.Save(startUri.MakeRelativeUri(page.Uri), page.Content));
 
                 await Task.WhenAll(tasks);
             } 
             else if (resource is IFile file)
             {
-                await storage.Save(file.Uri, file.Content);
+                await storage.Save(startUri.MakeRelativeUri(file.Uri), file.Content);
             }
         }
 

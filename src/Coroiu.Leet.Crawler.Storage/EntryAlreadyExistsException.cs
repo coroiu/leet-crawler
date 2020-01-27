@@ -8,7 +8,7 @@ namespace Coroiu.Leet.Crawler.Storage
         {
         }
 
-        public EntryAlreadyExistsException(Uri uri, Exception innerException) : base($"Entry '{uri.AbsoluteUri}' already exists.", innerException)
+        public EntryAlreadyExistsException(Uri uri, Exception innerException) : base($"Entry '{uri}' already exists.", innerException)
         {
         }
     }

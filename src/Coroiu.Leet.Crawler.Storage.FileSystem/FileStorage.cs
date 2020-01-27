@@ -22,16 +22,14 @@ namespace Coroiu.Leet.Crawler.Storage.FileSystem
 
         public async Task Save(Uri uri, string content)
         {
-            // This conversion should be placed somewhere else
-            var filepath = new Uri(root, uri.AbsolutePath);
+            var filepath = new Uri(root, uri);
 
             await File.WriteAllTextAsync(filepath.ToString(), content);
         }
 
         public async Task Save(Uri uri, byte[] content)
         {
-            // This conversion should be placed somewhere else
-            var filepath = new Uri(root, uri.AbsolutePath);
+            var filepath = new Uri(root, uri);
 
             await File.WriteAllBytesAsync(filepath.ToString(), content);
         }

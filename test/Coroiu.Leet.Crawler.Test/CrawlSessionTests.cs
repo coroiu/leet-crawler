@@ -42,6 +42,7 @@ namespace Coroiu.Leet.Crawler.Test
             await crawlSession.Crawl();
 
             var savedContent = await storage.Read(storage.Entries.First());
+            storage.Entries.Should().Contain(new Uri("", UriKind.Relative));
             savedContent.Should().Be(content);
         }
 
@@ -55,6 +56,7 @@ namespace Coroiu.Leet.Crawler.Test
             await crawlSession.Crawl();
 
             var savedContent = await storage.Read(storage.Entries.First());
+            storage.Entries.Should().Contain(new Uri("", UriKind.Relative));
             savedContent.Should().Be(content);
         }
 
