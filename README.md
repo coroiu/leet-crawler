@@ -12,7 +12,7 @@ Heavily concurrent web crawler implemented in C# using the built in TPL.
 
 ## Future Improvements
 - Algorithm is currently a DFS-style approach which doesn't really scale when the stack-size starts to grow.
-- Maybe expand on the currently limited control over the thread-pool and scheduling.
+- Maybe add control over the thread-pool and scheduling.
 - Event-driven progress reporting instead of polling.
 - Higher-level tests.
 - More interactive GUI.
